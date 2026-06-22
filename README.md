@@ -43,10 +43,10 @@
 <br/>
 
 <div align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=SergioJR2&bg_color=0d1117&color=38bdf8&line=2563eb&point=ffffff&area=true&area_color=1e3a8a&hide_border=true&radius=12" alt="GitHub Activity Graph" />
+  <img src="https://raw.githubusercontent.com/SergioJR2/SergioJR2/main/profile-summary-card-output/github_dark/0-profile-details.svg" alt="GitHub Activity Graph" />
 </div>
 
-
+---
 <img src="https://capsule-render.vercel.app/api?color=0:0f172a,40:1e3a8a,80:2563eb,100:06b6d4&height=120&section=footer&type=waving" alt="footer" />
 
 <br/>
