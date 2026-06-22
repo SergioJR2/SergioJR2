@@ -29,7 +29,7 @@
 ## GitHub Stats
 
 <div align="center">
-  <img src="https://streak-stats.demolab.com?user=joshi20022021&theme=github-dark-blue&border_radius=12&border=2563EB&fire=38BDF8&ring=2563EB&currStreakLabel=38BDF8" alt="GitHub Streak" />
+  <img src="https://streak-stats.demolab.com?user=SergioJR2&theme=github-dark-blue&border_radius=12&border=2563EB&fire=38BDF8&ring=2563EB&currStreakLabel=38BDF8" alt="GitHub Streak" />
 </div>
 
 <br/>
