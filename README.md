@@ -42,6 +42,11 @@
 
 <br/>
 
+## Lenguajes de mis proyectos
+
+
+<br/>
+
 <div align="center">
   <img src="https://raw.githubusercontent.com/SergioJR2/SergioJR2/main/profile-summary-card-output/github_dark/0-profile-details.svg" alt="GitHub Activity Graph" />
 </div>
