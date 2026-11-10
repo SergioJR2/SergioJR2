@@ -17,6 +17,7 @@ API_ROOT = "https://api.github.com"
 README_PATH = Path("README.md")
 START_MARKER = "<!-- LANGUAGES:START -->"
 END_MARKER = "<!-- LANGUAGES:END -->"
+LANGUAGES_HEADING = "## Lenguajes de mis proyectos"
 
 
 def github_get(path: str, token: str) -> tuple[object, dict[str, str]]:
@@ -99,8 +100,40 @@ def render_language_list(languages: dict[str, int]) -> str:
 
 def update_readme(language_list: str) -> None:
     readme = README_PATH.read_text(encoding="utf-8")
-    if readme.count(START_MARKER) != 1 or readme.count(END_MARKER) != 1:
-        raise RuntimeError("README.md must contain exactly one language marker pair.")
+    start_count = readme.count(START_MARKER)
+    end_count = readme.count(END_MARKER)
+
+    if start_count == 0 and end_count == 0:
+        lines = readme.splitlines()
+        heading_indexes = [
+            index for index, line in enumerate(lines) if line.strip() == LANGUAGES_HEADING
+        ]
+        if len(heading_indexes) != 1:
+            raise RuntimeError(
+                f"README.md must contain exactly one '{LANGUAGES_HEADING}' heading "
+                "so the language section can be created."
+            )
+
+        insertion = [
+            "",
+            "Lenguajes detectados automáticamente en los repositorios accesibles. "
+            "No se muestran nombres de repositorios privados.",
+            "",
+            START_MARKER,
+            language_list,
+            END_MARKER,
+        ]
+        insert_at = heading_indexes[0] + 1
+        lines[insert_at:insert_at] = insertion
+        updated = "\n".join(lines) + ("\n" if readme.endswith(("\n", "\r")) else "")
+        README_PATH.write_text(updated, encoding="utf-8", newline="\n")
+        return
+
+    if start_count != 1 or end_count != 1:
+        raise RuntimeError(
+            "README.md must contain either no language markers or exactly one "
+            "LANGUAGES:START / LANGUAGES:END pair."
+        )
 
     start = readme.index(START_MARKER) + len(START_MARKER)
     end = readme.index(END_MARKER, start)
