@@ -42,8 +42,6 @@
 
 <br/>
 
-## Lenguajes de mis proyectos
-
 
 <br/>
 
