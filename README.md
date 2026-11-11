@@ -52,6 +52,10 @@
 ## Lenguajes
 
 
+## Lenguajes de mis proyectos
+
+Lenguajes detectados automáticamente en los repositorios accesibles. No se muestran nombres de repositorios privados.
+
 <!-- LANGUAGES:START -->
 `ANTLR` · `Assembly` · `Batchfile` · `C` · `C++` · `CSS` · `Dockerfile` · `Fortran` · `Go` · `Hack` · `HTML` · `Inno Setup` · `Java` · `JavaScript` · `Jupyter Notebook` · `Lex` · `Makefile` · `Pascal` · `PHP` · `PowerShell` · `Processing` · `Procfile` · `Python` · `Rust` · `Shell` · `TypeScript` · `Yacc`
 <!-- LANGUAGES:END -->
