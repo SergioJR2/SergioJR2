@@ -49,6 +49,14 @@
   <img src="https://raw.githubusercontent.com/SergioJR2/SergioJR2/main/profile-summary-card-output/github_dark/0-profile-details.svg" alt="GitHub Activity Graph" />
 </div>
 
+## Lenguajes de mis proyectos
+
+Lenguajes detectados automáticamente en los repositorios accesibles. No se muestran nombres de repositorios privados.
+
+<!-- LANGUAGES:START -->
+`ANTLR` · `Assembly` · `Batchfile` · `C` · `C++` · `CSS` · `Dockerfile` · `Fortran` · `Go` · `Hack` · `HTML` · `Inno Setup` · `Java` · `JavaScript` · `Jupyter Notebook` · `Lex` · `Makefile` · `Pascal` · `PHP` · `PowerShell` · `Processing` · `Procfile` · `Python` · `Rust` · `Shell` · `TypeScript` · `Yacc`
+<!-- LANGUAGES:END -->
+
 ---
 <img src="https://capsule-render.vercel.app/api?color=0:0f172a,40:1e3a8a,80:2563eb,100:06b6d4&height=120&section=footer&type=waving" alt="footer" />
 
