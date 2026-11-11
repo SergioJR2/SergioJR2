@@ -18,6 +18,10 @@ README_PATH = Path("README.md")
 START_MARKER = "<!-- LANGUAGES:START -->"
 END_MARKER = "<!-- LANGUAGES:END -->"
 LANGUAGES_HEADING = "## Lenguajes de mis proyectos"
+LANGUAGES_DESCRIPTION = (
+    "Lenguajes detectados automáticamente en los repositorios accesibles. "
+    "No se muestran nombres de repositorios privados."
+)
 
 
 def github_get(path: str, token: str) -> tuple[object, dict[str, str]]:
@@ -108,22 +112,33 @@ def update_readme(language_list: str) -> None:
         heading_indexes = [
             index for index, line in enumerate(lines) if line.strip() == LANGUAGES_HEADING
         ]
-        if len(heading_indexes) != 1:
-            raise RuntimeError(
-                f"README.md must contain exactly one '{LANGUAGES_HEADING}' heading "
-                "so the language section can be created."
-            )
+        if len(heading_indexes) > 1:
+            raise RuntimeError(f"README.md contains '{LANGUAGES_HEADING}' more than once.")
 
-        insertion = [
-            "",
-            "Lenguajes detectados automáticamente en los repositorios accesibles. "
-            "No se muestran nombres de repositorios privados.",
-            "",
-            START_MARKER,
-            language_list,
-            END_MARKER,
-        ]
-        insert_at = heading_indexes[0] + 1
+        if heading_indexes:
+            insert_at = heading_indexes[0] + 1
+            insertion = [
+                "",
+                LANGUAGES_DESCRIPTION,
+                "",
+                START_MARKER,
+                language_list,
+                END_MARKER,
+            ]
+        else:
+            insertion = [
+                LANGUAGES_HEADING,
+                "",
+                LANGUAGES_DESCRIPTION,
+                "",
+                START_MARKER,
+                language_list,
+                END_MARKER,
+                "",
+            ]
+            separators = [index for index, line in enumerate(lines) if line.strip() == "---"]
+            insert_at = separators[-1] if separators else len(lines)
+
         lines[insert_at:insert_at] = insertion
         updated = "\n".join(lines) + ("\n" if readme.endswith(("\n", "\r")) else "")
         README_PATH.write_text(updated, encoding="utf-8", newline="\n")
@@ -134,6 +149,20 @@ def update_readme(language_list: str) -> None:
             "README.md must contain either no language markers or exactly one "
             "LANGUAGES:START / LANGUAGES:END pair."
         )
+
+    start_marker_index = readme.index(START_MARKER)
+    end_marker_index = readme.index(END_MARKER)
+    if end_marker_index < start_marker_index:
+        raise RuntimeError("README.md has the language markers in the wrong order.")
+
+    if readme.count(LANGUAGES_HEADING) == 0:
+        start_line = readme[:start_marker_index].count("\n")
+        lines = readme.splitlines()
+        lines[start_line:start_line] = [LANGUAGES_HEADING, "", LANGUAGES_DESCRIPTION, ""]
+        readme = "\n".join(lines) + ("\n" if readme.endswith(("\n", "\r")) else "")
+        README_PATH.write_text(readme, encoding="utf-8", newline="\n")
+    elif readme.count(LANGUAGES_HEADING) > 1:
+        raise RuntimeError(f"README.md contains '{LANGUAGES_HEADING}' more than once.")
 
     start = readme.index(START_MARKER) + len(START_MARKER)
     end = readme.index(END_MARKER, start)
